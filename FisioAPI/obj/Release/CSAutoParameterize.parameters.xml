@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="MOSSAEntities-Web.config Connection String" description="MOSSAEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Database.MOSSAModel.csdl|res://*/Database.MOSSAModel.ssdl|res://*/Database.MOSSAModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:fisiomossa.database.windows.net;initial catalog=MOSSA;persist security info=True;user id=MOSSA;password=fisio1!!;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Usuario\\Documents\\CloudTest\\MOSSA\\FisioAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MOSSAEntities']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Usuario\\Documents\\CloudTest\\MOSSA\\FisioAPI\\obj\\Release\\Package\\PackageTmp\\bin\\Web\.config$" match="/configuration/connectionStrings/add[@name='MOSSAEntities']/@connectionString" />
+  </parameter>
+</parameters>

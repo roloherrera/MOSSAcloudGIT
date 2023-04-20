@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Principal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div id="card-carousel" class="carousel slide" data-bs-ride="carousel" style="width: 620px;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="card d-flex justify-content-center" style="width: 620px; height: 820px; margin: 0 auto;">
+                    <img src="~/img/BackMassage.jpeg" />
+                </div>
+                
+            </div>
+            <div class="carousel-item">
+                <div class="card d-flex justify-content-center" style="width: 620px; height: 820px; margin: 0 auto;">
+                    <img src="~/img/Pedicure.jpg" />
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card d-flex justify-content-center" style="width: 620px; height: 820px; margin: 0 auto;">
+                    <img src="~/img/ShockTherapy.png" />
+                </div>
+            </div>
+            
+        </div>
+        <a class="carousel-control-prev" href="#card-carousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden text-dark"><</span>
+        </a>
+        <a class="carousel-control-next" href="#card-carousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden text-dark">></span>
+        </a>
+
+    </div>
+</div>

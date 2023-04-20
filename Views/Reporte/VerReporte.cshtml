@@ -1,0 +1,104 @@
+﻿<div class="row mt-2">
+
+    <div class="col-sm-6">
+
+        <div class="card">
+            <div class="card-header">Casos Abiertos ultimos 5 días </div>
+            <div class="card-body">
+                <canvas id="reporteCA" style="max-height:250px"></canvas>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-6">
+
+        <div class="card">
+            <div class="card-header">Casos Cerrados ultimos 5 días </div>
+            <div class="card-body">
+                <canvas id="ReporteCC" style="max-height:250px"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts{
+
+    <script>
+        function resumenCasosAbiertos() {
+
+            fetch("Reporte/resumenCasosAbiertos")
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response);
+                })
+                .then((dataJson) => {
+
+                    const labels = Utils.months({ count: 7 });
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Casos Abiertos',
+                            data: [0, 5, 10, 15, 20],
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        }]
+                    };
+                    const config = {
+                        type: 'line',
+                        data: data,
+                    };
+                    const canvasLine = document.getElementById("reporteCA");
+                    const graficoLine = new Chart(canvasLine, config)
+
+                }).catch((error) => {
+                    console.log("error")
+
+                })
+
+        }
+        function resumenProducto() {
+
+            fetch("Reporte/resumenCasosCerrados")
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response);
+                })
+                .then((dataJson) => {
+
+
+                    const labels = Utils.months({ count: 7 });
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Casos Cerrados',
+                            data: [0, 5, 10, 15, 20],
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        }]
+                    };
+                    const config = {
+                        type: 'line',
+                        data: data,
+                    };
+                    const canvasLine = document.getElementById("ReporteCC");
+                    const graficoLine = new Chart(canvasLine, config)
+
+                }).catch((error) => {
+                    console.log("error")
+
+                })
+
+        }
+        $(document).ready(() => {
+
+            resumenCasosAbiertos()
+            resumenCasosCerrados()
+        })
+    </script>
+
+}
+Footer

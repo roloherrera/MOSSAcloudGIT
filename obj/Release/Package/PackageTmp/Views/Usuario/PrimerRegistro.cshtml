@@ -1,0 +1,152 @@
+﻿@model G7.Models.UsuarioObj
+
+@{
+    ViewBag.Title = "PrimerRegistro";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+            <div class="row justify-content-center align-items-center">
+
+
+                <div class="col-md-8">
+                    @using (Html.BeginForm("PrimerRegistro", "Usuario", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <div class="col-md-4 mb-4 mb-md-0">
+                                <img class="d-block img-fluid" src="~/img/Mossa-icon.png" alt="MOSSA Logo">
+                            </div>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Apellido1, "Primer Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Apellido1, new { htmlAttributes = new { @class = "form-control", style = "white-space: nowrap" } })
+                                    @Html.ValidationMessageFor(model => model.Apellido1, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Apellido2, "Segundo Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Apellido2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Apellido2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", maxlength = 9 } })
+                                    @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", data_val = "true", data_val_regex = "El número de teléfono debe estar en el formato 8 dígitos (####-####) o 8 dígitos (########)", data_val_regex_pattern = @"^\d{4}\-?\d{4}$" } })
+                                    @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Genero, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.Genero, new SelectList(new[]
+                                    {
+                                        new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                                        new SelectListItem { Text = "Otro", Value = "Otro" }
+                                    }, "Value", "Text"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <script>
+                            // validar que la fecha ingresada sea válida
+                            $(function () {
+                                $('#FechaNacimiento').on('blur', function () {
+                                    var fecha = $(this).val();
+                                    var esFechaValida = moment(fecha, 'YYYY-MM-DD', true).isValid();
+                                    if (!esFechaValida) {
+                                        alert('La fecha ingresada no es válida.');
+                                        $(this).val('');
+                                    }
+                                });
+                            });
+
+                            // solo aceptar un input tipo fecha en el formato deseado
+                            $(function () {
+                                $('#FechaNacimiento').on('input', function () {
+                                    var fecha = $(this).val();
+                                    var fechaValida = /^\d{4}\-\d{2}\-\d{2}$/.test(fecha);
+                                    if (!fechaValida) {
+                                        $(this).val('');
+                                    }
+                                });
+                            });
+                            </script>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Contrasenna, "Contraseña", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Contrasenna, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Contrasenna, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="submit" class="btn btn-primary mr-2">
+                                        <i class="fas fa-user-plus mr-2"></i> Registrar
+                                    </button>
+                                    @Html.ActionLink("Regresar", "/", "Home", null, new { @class = "btn btn-outline-secondary" })
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

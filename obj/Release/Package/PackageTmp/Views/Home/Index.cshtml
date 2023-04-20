@@ -1,0 +1,108 @@
+﻿@model G7.Models.UsuarioObj
+@{
+    ViewBag.Title = "Iniciar sesión";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        margin-top: 50px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #fff;
+        border-bottom: none;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 500;
+        padding-top: 20px;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .form-group label {
+        font-weight: 500;
+    }
+
+    .form-control:focus {
+        border-color: #6c757d;
+        box-shadow: none;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        width: 100%;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+    .btn-secondary {
+        color: #6c757d;
+        background-color: transparent;
+        border-color: transparent;
+        width: 100%;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+        .btn-secondary:hover {
+            background-color: #f8f9fa;
+        }
+
+    .text-muted {
+        font-size: 0.9rem;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Iniciar sesión
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("ValidarAcceso", "Home", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+                    {
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Correo electrónico</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Ingresa tu correo electrónico", @required = "required", @autofocus = "autofocus" })
+                            <div class="invalid-feedback">
+                                Debes ingresar un correo electrónico válido.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Contraseña</label>
+                            @Html.PasswordFor(m => m.Contrasenna, new { @class = "form-control", @placeholder = "Ingresa tu contraseña", @required = "required" })
+                            <div class="invalid-feedback">
+                                Debes ingresar una contraseña.
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                        </div>
+                    }
+                    <hr>
+                    <p class="text-muted text-center mb-0">¿No tienes una cuenta? <a href="@Url.Action("PrimerRegistro", "Usuario")" class="btn btn-secondary">Crear cuenta</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
