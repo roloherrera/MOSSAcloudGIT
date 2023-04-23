@@ -81,23 +81,64 @@
                     {
                         <div class="form-group">
                             <label for="exampleInputEmail1">Correo electrónico</label>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Ingresa tu correo electrónico", @required = "required", @autofocus = "autofocus" })
-                            <div class="invalid-feedback">
-                                Debes ingresar un correo electrónico válido.
-                            </div>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Ingresa tu correo electrónico", @required = "required", @autofocus = "autofocus", type = "email", id = "email-input" })
+                            <div id="EmailError" class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputPassword1">Contraseña</label>
-                            @Html.PasswordFor(m => m.Contrasenna, new { @class = "form-control", @placeholder = "Ingresa tu contraseña", @required = "required" })
-                            <div class="invalid-feedback">
-                                Debes ingresar una contraseña.
-                            </div>
+                            @Html.PasswordFor(m => m.Contrasenna, new { @class = "form-control", type = "password", @placeholder = "Ingresa tu contraseña", @required = "required", id = "password-input" })
+                            <div id="ContrasennaError" class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group mb-0">
-                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                            <button type="submit" class="btn btn-primary" id="ingresar-button" disabled>Ingresar</button>
                         </div>
+
+
+                        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                        <script>
+                            $(document).ready(function () {
+                                $('#Email').blur(function () {
+                                    if ($(this).val().trim() == '') {
+                                        $(this).addClass('is-invalid');
+                                        $('#EmailError').text('Este campo es obligatorio').show();
+                                    } else {
+                                        $(this).removeClass('is-invalid');
+                                        $('#EmailError').hide();
+                                    }
+                                });
+                            });
+                            $(document).ready(function () {
+                                $('#Contrasenna').blur(function () {
+                                    if ($(this).val().trim() == '') {
+                                        $(this).addClass('is-invalid');
+                                        $('#ContrasennaeError').text('Este campo es obligatorio').show();
+                                    } else {
+                                        $(this).removeClass('is-invalid');
+                                        $('#ContrasennaeError').hide();
+                                    }
+                                });
+                            });
+                        </script>
+
+                        <script>
+                            const emailInput = document.getElementById('email-input');
+                            const passwordInput = document.getElementById('password-input');
+                            const ingresarButton = document.getElementById('ingresar-button');
+
+                            function validarCampos() {
+                                if (emailInput.value && passwordInput.value) {
+                                    ingresarButton.disabled = false;
+                                } else {
+                                    ingresarButton.disabled = true;
+                                }
+                            }
+
+                            emailInput.addEventListener('input', validarCampos);
+                            passwordInput.addEventListener('input', validarCampos);
+                        </script>
+
                     }
                     <hr>
                     <p class="text-muted text-center mb-0">¿No tienes una cuenta? <a href="@Url.Action("PrimerRegistro", "Usuario")" class="btn btn-secondary">Crear cuenta</a></p>

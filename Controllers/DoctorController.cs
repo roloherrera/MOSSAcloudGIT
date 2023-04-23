@@ -15,62 +15,47 @@ namespace G7.Controllers
 {
     public class DoctorController : Controller
     {
-        [HttpPost]
-        public ActionResult CrearDoctor(DoctorObj doctor)
+        DoctorModel instanciaDoctor = new DoctorModel();
+
+        //Agregar Doctor
+        [HttpGet]
+        public ActionResult RegistrarDoctor()
         {
-            using (HttpClient client = new HttpClient())
-            {
-                string rutaApi = ConfigurationManager.AppSettings["rutaApi"] + "api/Doctor/CrearDoctor";
-                string token = Session["codigoToken"]?.ToString();
-
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                JsonContent contenido = JsonContent.Create(doctor);
-
-                HttpResponseMessage respuesta = client.PostAsync(rutaApi, contenido).Result;
-
-                if (respuesta.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("VerDoctor", new { id = doctor.IdDoctor });
-                }
-                return View("Error");
-            }
+            return View();
         }
-        public ActionResult VerDoctor(int id)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                string rutaApi = ConfigurationManager.AppSettings["rutaApi"] + "api/Doctor/VerDoctor?id=" + id;
-                string token = Session["codigoToken"]?.ToString();
 
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                HttpResponseMessage respuesta = client.GetAsync(rutaApi).Result;
-
-                if (respuesta.IsSuccessStatusCode)
-                {
-                    DoctorObj doctor = respuesta.Content.ReadAsAsync<DoctorObj>().Result;
-                    return View(doctor);
-                }
-                return View("Error");
-            }
-        }
         [HttpPost]
-        public ActionResult BuscarDoctor(string nombre)
+        public ActionResult RegistrarDoctor(DoctorObj obj)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                string rutaApi = ConfigurationManager.AppSettings["rutaApi"] + "api/Doctor/BuscarDoctor?nombre=" + nombre;
-                string token = Session["codigoToken"]?.ToString();
+            var resultado = instanciaDoctor.RegistrarDoctor(obj);
 
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                HttpResponseMessage respuesta = client.GetAsync(rutaApi).Result;
-
-                if (respuesta.IsSuccessStatusCode)
-                {
-                    List<DoctorObj> doctores = respuesta.Content.ReadAsAsync<List<DoctorObj>>().Result;
-                    return View(doctores);
-                }
+            if (resultado != null && resultado.Codigo == 1)
+                return RedirectToAction("MostrarDoctores", "Doctor");
+            else
                 return View("Error");
-            }
+        }
+
+        //ver doctor
+        [HttpGet]
+        public ActionResult MostrarDoctor(int id)
+        {
+            var respuesta = instanciaDoctor.MostrarDoctor(id);
+
+            if (respuesta != null && respuesta.Codigo == 1)
+                return View(respuesta.objeto);
+            else
+                return View("Error");
+        }
+
+        [HttpGet]
+        public ActionResult MostrarDoctores()
+        {
+            var respuesta = instanciaDoctor.MostrarDoctores();
+
+            if (respuesta != null && respuesta.Codigo == 1)
+                return View(respuesta.lista);
+            else
+                return View("Error");
         }
 
     }

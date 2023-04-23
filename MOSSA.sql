@@ -692,7 +692,7 @@ BEGIN
 
 END
 GO
---consultar expediente por paciente
+--consultar comentarios por paciente
 CREATE PROCEDURE [dbo].[Consultar_Comentario_Usuario]
 	@IdPaciente int
 AS

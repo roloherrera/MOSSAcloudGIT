@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using System.Threading;
 using System.Web.Http;
 
 namespace FisioAPI.Controllers
@@ -15,7 +16,7 @@ namespace FisioAPI.Controllers
         DoctorModel instanciaDoctor = new DoctorModel();
         BitacoraModel instanciaBitacora = new BitacoraModel();
 
-        ////Revisa que el Doctor exista en el sistema 
+        
         [AllowAnonymous]
         [HttpPost]
         [Route("api/Doctor/Registrar_Doctor")]
@@ -34,10 +35,53 @@ namespace FisioAPI.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("api/Doctor/Mostrar_Doctor/{idDoctor}")]
+        public RespuestaDoctorObj Mostrar_Doctor(int idDoctor)
+        {
+            var correoToken = Thread.CurrentPrincipal.Identity.Name;
+            try
+            {
+                return instanciaDoctor.Mostrar_Doctor(idDoctor);
+
+            }
+            catch (Exception ex)
+            {
+                instanciaBitacora.Registrar_BitacoraE(correoToken, ex, MethodBase.GetCurrentMethod().Name);
+
+                RespuestaDoctorObj respuesta = new RespuestaDoctorObj();
+                respuesta.Codigo = -1;
+                respuesta.Mensaje = "Se presentó un error inesperado conectando con el API";
+                return respuesta;
+            }
+            
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("api/Doctor/Mostrar_Doctores")]
+        public RespuestaDoctorObj Mostrar_Doctores()
+        {
+            var correoToken = Thread.CurrentPrincipal.Identity.Name;
+            try
+            {
+                return instanciaDoctor.Mostrar_Doctores();
+
+            }
+            catch (Exception ex)
+            {
+                instanciaBitacora.Registrar_BitacoraE(correoToken, ex, MethodBase.GetCurrentMethod().Name);
+
+                RespuestaDoctorObj respuesta = new RespuestaDoctorObj();
+                respuesta.Codigo = -1;
+                respuesta.Mensaje = "Se presentó un error inesperado conectando con el API";
+                return respuesta;
+            }
+
+        }
 
 
-
-       
     }
 }
     

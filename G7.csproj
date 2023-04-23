@@ -156,6 +156,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CitasController.cs" />
+    <Compile Include="Controllers\ComentarioController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\ExpedientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -166,8 +167,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CitasObj.cs" />
-    <Compile Include="Models\DoctorObj.cs" />
-    <Compile Include="Models\ExpedientesObj.cs" />
+    <Compile Include="Models\ComentarioModel.cs" />
+    <Compile Include="Models\DoctorModel.cs" />
+    <Compile Include="Models\ExpedienteModel.cs" />
     <Compile Include="Models\Filtro.cs" />
     <Compile Include="Models\PlanillaObj.cs" />
     <Compile Include="Models\TipoUsuarioObj.cs" />
@@ -2098,10 +2100,12 @@
     <Content Include="Views\Usuario\PrimerRegistro.cshtml" />
     <Content Include="Views\Doctor\BuscarDoctor.cshtml" />
     <Content Include="Views\Reporte\VerReporte.cshtml" />
+    <Content Include="Views\Doctor\RegistrarDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Views\Comentario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
