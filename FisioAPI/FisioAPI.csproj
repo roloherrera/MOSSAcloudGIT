@@ -207,7 +207,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CitaController.cs" />
+    <Compile Include="Controllers\ComentarioController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\ExpedienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanillaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -304,9 +307,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\BitacoraModel.cs" />
-    <Compile Include="Models\CitasObj.cs" />
+    <Compile Include="Models\CitaModel.cs" />
+    <Compile Include="Models\ComentarioModel.cs" />
     <Compile Include="Models\DoctorModel.cs" />
-    <Compile Include="Models\ExpedientesObj.cs" />
+    <Compile Include="Models\ExpedienteModel.cs" />
     <Compile Include="Models\PlanillaModel.cs" />
     <Compile Include="Models\PlanillaObj.cs" />
     <Compile Include="Models\UsuarioModel.cs" />

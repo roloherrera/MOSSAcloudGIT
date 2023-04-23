@@ -4,12 +4,15 @@
     ViewBag.Title = "PrimerRegistro";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
+
 <div class="container my-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
 
             <div class="row justify-content-center align-items-center">
 
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
                 <div class="col-md-8">
                     @using (Html.BeginForm("PrimerRegistro", "Usuario", FormMethod.Post))
@@ -19,14 +22,16 @@
                         <div class="form-horizontal">
                             <div class="col-md-4 mb-4 mb-md-0">
                                 <img class="d-block img-fluid" src="~/img/Mossa-icon.png" alt="MOSSA Logo">
+
                             </div>
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.Nombre, "Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", id = "Nombre" } })
+                                    <div id="NombreError" class="invalid-feedback"></div>
                                     @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -35,6 +40,7 @@
                                 @Html.LabelFor(model => model.Apellido1, "Primer Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Apellido1, new { htmlAttributes = new { @class = "form-control", style = "white-space: nowrap" } })
+                                    <div id="Apellido1Error" class="invalid-feedback"></div>
                                     @Html.ValidationMessageFor(model => model.Apellido1, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -44,6 +50,7 @@
                                 @Html.LabelFor(model => model.Apellido2, "Segundo Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Apellido2, new { htmlAttributes = new { @class = "form-control" } })
+                                    <div id="Apellido2Error" class="invalid-feedback"></div>
                                     @Html.ValidationMessageFor(model => model.Apellido2, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -51,29 +58,31 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", maxlength = 9 } })
+                                    @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", pattern = "^[0-9]{9}$", title = "Debe ingresar 9 dígitos numéricos." } })
+                                    <div id="CedulaError" class="invalid-feedback"></div>
                                     @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", data_val = "true", data_val_regex = "El número de teléfono debe estar en el formato 8 dígitos (####-####) o 8 dígitos (########)", data_val_regex_pattern = @"^\d{4}\-?\d{4}$" } })
+                                    <div id="TelefonoError" class="invalid-feedback"></div>
                                     @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
-
-
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email", data_val_email = "El campo Email no es una dirección de correo electrónico válida" } })
+                                    <div id="EmailError" class="invalid-feedback"></div>
                                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Genero, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -84,6 +93,7 @@
                                         new SelectListItem { Text = "Femenino", Value = "Femenino" },
                                         new SelectListItem { Text = "Otro", Value = "Otro" }
                                     }, "Value", "Text"), new { @class = "form-control" })
+                                    <div id="GeneroError" class="invalid-feedback"></div>
                                     @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -93,53 +103,210 @@
                                 @Html.LabelFor(model => model.FechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                    <div id="FechaNacimientoError" class="invalid-feedback"></div>
                                     @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
-                            <script>
-                            // validar que la fecha ingresada sea válida
-                            $(function () {
-                                $('#FechaNacimiento').on('blur', function () {
-                                    var fecha = $(this).val();
-                                    var esFechaValida = moment(fecha, 'YYYY-MM-DD', true).isValid();
-                                    if (!esFechaValida) {
-                                        alert('La fecha ingresada no es válida.');
-                                        $(this).val('');
-                                    }
-                                });
-                            });
-
-                            // solo aceptar un input tipo fecha en el formato deseado
-                            $(function () {
-                                $('#FechaNacimiento').on('input', function () {
-                                    var fecha = $(this).val();
-                                    var fechaValida = /^\d{4}\-\d{2}\-\d{2}$/.test(fecha);
-                                    if (!fechaValida) {
-                                        $(this).val('');
-                                    }
-                                });
-                            });
-                            </script>
-
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Contrasenna, "Contraseña", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Contrasenna, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.Contrasenna, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                                    <div id="ContrasennaError" class="invalid-feedback"></div>
                                     @Html.ValidationMessageFor(model => model.Contrasenna, "", new { @class = "text-danger" })
+                                    <span class="text-danger">@Html.ValidationMessageFor(model => model.Contrasenna, "", new { @class = "text-danger" })</span>
                                 </div>
                             </div>
 
+
+                            <script>
+                                // validar que la fecha ingresada sea válida
+                                $(function () {
+                                    $('#FechaNacimiento').on('blur', function () {
+                                        var fecha = $(this).val();
+                                        var esFechaValida = moment(fecha, 'YYYY-MM-DD', true).isValid();
+                                        if (!esFechaValida) {
+                                            alert('La fecha ingresada no es válida.');
+                                            $(this).val('');
+                                        }
+                                    });
+                                });
+
+                                // solo aceptar un input tipo fecha en el formato deseado
+                                $(function () {
+                                    $('#FechaNacimiento').on('input', function () {
+                                        var fecha = $(this).val();
+                                        var fechaValida = /^\d{4}\-\d{2}\-\d{2}$/.test(fecha);
+                                        if (!fechaValida) {
+                                            $(this).val('');
+                                        }
+                                    });
+                                });
+                            </script>
+
+
+                            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                            <script>
+                                $(document).ready(function () {
+                                    $('#Nombre').blur(function () {
+                                        if ($(this).val().trim() == '') {
+                                            $(this).addClass('is-invalid');
+                                            $('#NombreError').text('Este campo es obligatorio').show();
+                                        } else {
+                                            $(this).removeClass('is-invalid');
+                                            $('#NombreError').hide();
+                                        }
+                                    });
+                                });
+                                $(document).ready(function () {
+                                    $('#Apellido1').blur(function () {
+                                        if ($(this).val().trim() == '') {
+                                            $(this).addClass('is-invalid');
+                                            $('#Apellido1Error').text('Este campo es obligatorio').show();
+                                        } else {
+                                            $(this).removeClass('is-invalid');
+                                            $('#Apellido1Error').hide();
+                                        }
+                                    });
+                                });
+                                $(document).ready(function () {
+                                    $('#Apellido2').blur(function () {
+                                        if ($(this).val().trim() == '') {
+                                            $(this).addClass('is-invalid');
+                                            $('#Apellido2Error').text('Este campo es obligatorio').show();
+                                        } else {
+                                            $(this).removeClass('is-invalid');
+                                            $('#Apellido2Error').hide();
+                                        }
+                                    });
+                                });
+                                $(document).ready(function () {
+                                    $('#Cedula').blur(function () {
+                                        if ($(this).val().trim() == '') {
+                                            $(this).addClass('is-invalid');
+                                            $('#CedulaError').text('Este campo es obligatorio').show();
+                                        } else {
+                                            $(this).removeClass('is-invalid');
+                                            $('#CedulaError').hide();
+                                        }
+                                    });
+                                })
+                                $(document).ready(function () {
+                                    $('#Telefono').blur(function () {
+                                        if ($(this).val().trim() == '') {
+                                            $(this).addClass('is-invalid');
+                                            $('#TelefonoError').text('Este campo es obligatorio').show();
+                                        } else {
+                                            $(this).removeClass('is-invalid');
+                                            $('#CedulaError').hide();
+                                        }
+                                    });
+                                });
+                                $(document).ready(function () {
+                                    $('#Genero').blur(function () {
+                                        if ($(this).val().trim() == '') {
+                                            $(this).addClass('is-invalid');
+                                            $('#GeneroError').text('Este campo es obligatorio').show();
+                                        } else {
+                                            $(this).removeClass('is-invalid');
+                                            $('#GeneroError').hide();
+                                        }
+                                    });
+                                });
+                                $(document).ready(function () {
+                                    $('#FechaNacimiento').blur(function () {
+                                        if ($(this).val().trim() == '') {
+                                            $(this).addClass('is-invalid');
+                                            $('#FechaNacimientoError').text('Este campo es obligatorio').show();
+                                        } else {
+                                            $(this).removeClass('is-invalid');
+                                            $('#FechaNacimientoError').hide();
+                                        }
+                                    });
+                                });
+                                $(document).ready(function () {
+                                    $('#Contrasenna').blur(function () {
+                                        if ($(this).val().trim() == '') {
+                                            $(this).addClass('is-invalid');
+                                            $('#ContrasennaError').text('Este campo es obligatorio').show();
+                                        } else {
+                                            $(this).removeClass('is-invalid');
+                                            $('#ContrasennaError').hide();
+                                        }
+                                    });
+                                });
+                                $(document).ready(function () {
+                                    $('#Email').blur(function () {
+                                        if ($(this).val().trim() == '') {
+                                            $(this).addClass('is-invalid');
+                                            $('#EmailError').text('Este campo es obligatorio').show();
+                                        } else {
+                                            $(this).removeClass('is-invalid');
+                                            $('#EmailError').hide();
+                                        }
+                                    });
+                                })
+
+                            </script>
+
+
                             <div class="form-group mt-4">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <button type="submit" class="btn btn-primary mr-2">
+                                    <button type="submit" class="btn btn-primary mr-2" id="registro-btn" disabled>
                                         <i class="fas fa-user-plus mr-2"></i> Registrar
                                     </button>
                                     @Html.ActionLink("Regresar", "/", "Home", null, new { @class = "btn btn-outline-secondary" })
                                 </div>
                             </div>
 
+                            <script>
+                                // Obtener los campos de entrada del formulario
+                                const inputNombre = document.getElementById("Nombre");
+                                const inputApellido1 = document.getElementById("Apellido1");
+                                const inputApellido2 = document.getElementById("Apellido2");
+                                const inputCedula = document.getElementById("Cedula");
+                                const inputTelefono = document.getElementById("Telefono");
+                                const inputEmail = document.getElementById("Email");
+
+                                const inputFechaNacimiento = document.getElementById("FechaNacimiento");
+                                const inputContrasenna = document.getElementById("Contrasenna");
+
+                                // Obtener el botón de registro
+                                const btnRegistro = document.getElementById("registro-btn");
+
+                                // Agregar un event listener a cada campo de entrada para validar el formulario
+                                inputNombre.addEventListener("input", validarFormulario);
+                                inputApellido1.addEventListener("input", validarFormulario);
+                                inputApellido2.addEventListener("input", validarFormulario);
+                                inputCedula.addEventListener("input", validarFormulario);
+                                inputTelefono.addEventListener("input", validarFormulario);
+                                inputEmail.addEventListener("input", validarFormulario);
+
+                                inputFechaNacimiento.addEventListener("input", validarFormulario);
+                                inputContrasenna.addEventListener("input", validarFormulario);
+
+                                // Función para validar el formulario
+                                function validarFormulario() {
+                                    // Obtener los valores de los campos de entrada
+                                    const Nombre = inputNombre.value.trim();
+                                    const Apellido1 = inputApellido1.value.trim();
+                                    const Apellido2 = inputApellido2.value.trim();
+                                    const Cedula = inputCedula.value.trim();
+                                    const Telefono = inputTelefono.value.trim();
+                                    const Email = inputEmail.value.trim();
+
+                                    const FechaNacimiento = inputFechaNacimiento.value.trim();
+                                    const Contrasenna = inputContrasenna.value.trim();
+
+                                    // Validar que los campos no estén vacíos
+                                    if (Nombre === "" || Apellido1 === "" || Apellido2 === "" || Cedula === "" || Telefono === "" || Email === ""
+                                        || FechaNacimiento === "" || Contrasenna === "") {
+                                        btnRegistro.disabled = true;
+                                    } else {
+                                        btnRegistro.disabled = false;
+                                    }
+                                }
+                            </script>
 
 
                         </div>
@@ -149,4 +316,3 @@
             </div>
         </div>
     </div>
-</div>

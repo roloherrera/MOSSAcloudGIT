@@ -21,14 +21,15 @@ namespace FisioAPI.Controllers
             try
             {
                 return instanciaUsuario.Validar_Usuario(usuario);
+                
             }
             catch (Exception ex)
             {
-                instanciaBitacora.Registrar_Bitacora(usuario.Email, ex, MethodBase.GetCurrentMethod().Name);
+                instanciaBitacora.Registrar_BitacoraE(usuario.Email, ex, MethodBase.GetCurrentMethod().Name);
 
                 RespuestaUsuarioObj respuesta = new RespuestaUsuarioObj();
                 respuesta.Codigo = -1;
-                respuesta.Mensaje = "Se presentó un error inesperado";
+                respuesta.Mensaje = "Se presentó un error inesperado conectando con el API";
                 return respuesta;
             }
         }
@@ -45,11 +46,10 @@ namespace FisioAPI.Controllers
             }
             catch (Exception ex)
             {
-                instanciaBitacora.Registrar_Bitacora(usuario.Email, ex, MethodBase.GetCurrentMethod().Name);
-
+                instanciaBitacora.Registrar_BitacoraE(usuario.Email, ex, MethodBase.GetCurrentMethod().Name);
                 RespuestaUsuarioObj respuesta = new RespuestaUsuarioObj();
                 respuesta.Codigo = -1;
-                respuesta.Mensaje = "Se presentó un error inesperado";
+                respuesta.Mensaje = "Se presentó un error inesperado conectando con el API";
                 return respuesta;
             }
         }
@@ -67,11 +67,10 @@ namespace FisioAPI.Controllers
             }
             catch (Exception ex)
             {
-                instanciaBitacora.Registrar_Bitacora(usuario.Email, ex, MethodBase.GetCurrentMethod().Name);
-
+                instanciaBitacora.Registrar_BitacoraE(usuario.Email, ex, MethodBase.GetCurrentMethod().Name);
                 RespuestaUsuarioObj respuesta = new RespuestaUsuarioObj();
                 respuesta.Codigo = -1;
-                respuesta.Mensaje = "Se presentó un error inesperado";
+                respuesta.Mensaje = "Se presentó un error inesperado conectando con el API";
                 return respuesta;
             }
         }
@@ -91,11 +90,10 @@ namespace FisioAPI.Controllers
             }
             catch (Exception ex)
             {
-                instanciaBitacora.Registrar_Bitacora(correoToken, ex, MethodBase.GetCurrentMethod().Name);
-
+                instanciaBitacora.Registrar_BitacoraE(correoToken, ex, MethodBase.GetCurrentMethod().Name);
                 RespuestaUsuarioObj respuesta = new RespuestaUsuarioObj();
                 respuesta.Codigo = -1;
-                respuesta.Mensaje = "Se presentó un error inesperado";
+                respuesta.Mensaje = "Se presentó un error inesperado conectando con el API";
                 return respuesta;
             }
         }
@@ -104,7 +102,7 @@ namespace FisioAPI.Controllers
         //[Authorize]
         [AllowAnonymous]
         [HttpGet]
-        [Route("api/Usuario/Consultar_Usuario_Id")]
+        [Route("api/Usuario/Consultar_Usuario_Id/{idPaciente}")]
         public RespuestaUsuarioObj Consultar_Usuario_Id(int id)
         {
             var correoToken = Thread.CurrentPrincipal.Identity.Name;
@@ -114,11 +112,11 @@ namespace FisioAPI.Controllers
             }
             catch (Exception ex)
             {
-                instanciaBitacora.Registrar_Bitacora(correoToken, ex, MethodBase.GetCurrentMethod().Name);
+                instanciaBitacora.Registrar_BitacoraE(correoToken, ex, MethodBase.GetCurrentMethod().Name);
 
                 RespuestaUsuarioObj respuesta = new RespuestaUsuarioObj();
                 respuesta.Codigo = -1;
-                respuesta.Mensaje = "Se presentó un error inesperado";
+                respuesta.Mensaje = "Se presentó un error inesperado conectando con el API";
                 return respuesta;
             }
         }

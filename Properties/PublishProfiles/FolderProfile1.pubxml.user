@@ -37,10 +37,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/01/2023 18:13:42</publishTime>
     </File>
     <File Include="bin/G7.dll">
-      <publishTime>04/19/2023 18:42:25</publishTime>
+      <publishTime>04/22/2023 13:10:34</publishTime>
     </File>
     <File Include="bin/G7.pdb">
-      <publishTime>04/19/2023 18:42:25</publishTime>
+      <publishTime>04/22/2023 13:10:34</publishTime>
     </File>
     <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
       <publishTime>03/01/2023 18:13:42</publishTime>
@@ -6010,7 +6010,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/19/2023 18:41:26</publishTime>
     </File>
     <File Include="Views/Usuario/PrimerRegistro.cshtml">
-      <publishTime>04/19/2023 17:19:33</publishTime>
+      <publishTime>04/22/2023 13:08:55</publishTime>
     </File>
     <File Include="Views/Usuario/RegistrarUsuarios.cshtml">
       <publishTime>03/21/2023 23:45:52</publishTime>

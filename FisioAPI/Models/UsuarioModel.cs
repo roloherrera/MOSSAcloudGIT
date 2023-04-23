@@ -40,7 +40,7 @@ namespace FisioAPI.Models
                     usuarioEncontrado.State = resultado.state;
 
                     respuesta.Codigo = 1;
-                    respuesta.Mensaje = "Ok";
+                    respuesta.Mensaje = "Se creó el registro exitosamente";
                     respuesta.objeto = usuarioEncontrado;
                 }
                 else
@@ -77,12 +77,12 @@ namespace FisioAPI.Models
                 if (resultado > 0)
                 {
                     respuesta.Codigo = 1;
-                    respuesta.Mensaje = "Ok";
+                    respuesta.Mensaje = "Se creó el registro exitosamente";
                 }
                 else
                 {
                     respuesta.Codigo = 0;
-                    respuesta.Mensaje = "No se realizó la transacción";
+                    respuesta.Mensaje = "Se presentó un error inesperado (error al conectar a Base de Datos)";
                 }
 
                 return respuesta;
@@ -112,12 +112,12 @@ namespace FisioAPI.Models
                 if (resultado > 0)
                 {
                     respuesta.Codigo = 1;
-                    respuesta.Mensaje = "Ok";
+                    respuesta.Mensaje = "Se actualizó el registro exitosamente";
                 }
                 else
                 {
                     respuesta.Codigo = 0;
-                    respuesta.Mensaje = "No se realizó la transacción";
+                    respuesta.Mensaje = "Se presentó un error inesperado (error al conectar a Base de Datos)";
                 }
 
                 return respuesta;
@@ -155,7 +155,7 @@ namespace FisioAPI.Models
                     }
 
                     respuesta.Codigo = 1;
-                    respuesta.Mensaje = "Ok";
+                    respuesta.Mensaje = "Conexión exitosa";
                     respuesta.lista = datos;
                 }
                 else
@@ -194,7 +194,7 @@ namespace FisioAPI.Models
                     usuarioEncontrado.TipoUsuario = resultado.idTipoUsuarioFk;
                    
                     respuesta.Codigo = 1;
-                    respuesta.Mensaje = "Ok";
+                    respuesta.Mensaje = "Conexión exitosa";
                     respuesta.objeto = usuarioEncontrado;
                 }
                 else
