@@ -1888,7 +1888,6 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
-    <Content Include="Views\Doctor\CrearDoctor.cshtml" />
     <Content Include="Web.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2085,8 +2084,6 @@
     <Content Include="Views\Sesion\ForgotPassword.cshtml" />
     <Content Include="Views\Sesion\Login.cshtml" />
     <Content Include="Views\Sesion\Register.cshtml" />
-    <Content Include="Views\Expedientes\VerExpediente.cshtml" />
-    <Content Include="Views\Expedientes\CrearExpediente.cshtml" />
     <Content Include="Views\Planilla\VerPlanilla.cshtml" />
     <Content Include="Views\Doctor\VerDoctor.cshtml" />
     <Content Include="Views\Usuario\VerUsuario.cshtml" />
@@ -2098,14 +2095,17 @@
     <Content Include="Views\Planilla\MostrarPlanilla.cshtml" />
     <Content Include="Views\Planilla\RegistrarPlanilla.cshtml" />
     <Content Include="Views\Usuario\PrimerRegistro.cshtml" />
-    <Content Include="Views\Doctor\BuscarDoctor.cshtml" />
     <Content Include="Views\Reporte\VerReporte.cshtml" />
     <Content Include="Views\Doctor\RegistrarDoctor.cshtml" />
+    <Content Include="Views\Comentario\ConsultarComentarios.cshtml" />
+    <Content Include="Views\Expedientes\RegistrarExpediente.cshtml" />
+    <Content Include="Views\Expedientes\EditarExpediente.cshtml" />
+    <Content Include="Views\Expedientes\ConsultarExpedientePaciente.cshtml" />
+    <Content Include="Views\Comentario\AgregarComentario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
-    <Folder Include="Views\Comentario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

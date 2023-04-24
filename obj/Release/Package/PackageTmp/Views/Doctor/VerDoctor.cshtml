@@ -4,34 +4,38 @@
     ViewBag.Title = "VerDoctor";
 }
 
-<h2>VerDoctor</h2>
+<div class="container-fluid py-3">
+    <h2 class="pb-3">Ver Doctores</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-    <tr>
-        <th>
-            Id Doctor
-        </th>
-        <th>
-            Id Usuario
-        </th>
-        <th></th>
-    </tr>
+    <div class="row pb-3">
+        <div class="col-md-12">
+            @Html.ActionLink("Crear Nuevo Doctor", "CrearDoctor", "Doctor", null, new { @class = "btn btn-dark" })
+        </div>
+    </div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdDoctor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdUsuario)
-            </td>
-            
-
-        </tr>
-    }
-
-</table>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id Doctor</th>
+                        <th>Id Usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.IdDoctor)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IdUsuario)</td>
+                            <td>
+                                @Html.ActionLink("Editar", "EditarDoctor", "Doctor", new { id = item.IdDoctor }, new { @class = "btn btn-secondary" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

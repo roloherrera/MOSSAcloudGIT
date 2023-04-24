@@ -23,12 +23,10 @@ namespace G7.Controllers
         }
 
         [HttpGet]
-        public ActionResult AgregarComentario(int idPaciente)
+        public ActionResult AgregarComentario()
         {
-            ComentarioObj comentario = new ComentarioObj();
-            comentario.IdUsuario = idPaciente;
-
-            return View(comentario);
+            
+            return View();
         }
 
         [HttpPost]
