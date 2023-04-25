@@ -91,6 +91,33 @@ namespace FisioAPI.Controllers
                 return InternalServerError(new Exception("Se presentó un error inesperado conectando con el API"));
             }
         }
+
+        //Consultar todos los expedientes
+        [HttpGet]
+        [Route("api/Expediente/ConsultarExpedientes")]
+        public IHttpActionResult ConsultarExpedientes()
+        {
+            try
+            {
+                var expedientes = _expedienteModel.Consultar_Expedientes();
+
+                if (expedientes != null)
+                {
+                    return Ok(expedientes);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                _bitacoraModel.Registrar_BitacoraE("0", ex, MethodBase.GetCurrentMethod().Name);
+
+                return InternalServerError(new Exception("Se presentó un error inesperado conectando con el API"));
+            }
+        }
+
     }
 }
     

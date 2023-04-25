@@ -10,10 +10,15 @@ namespace G7.Controllers
     public class ComentarioController : Controller
     {
         ComentarioModel instanciaComentario = new ComentarioModel();
-
+        [Filtro]
         [HttpGet]
         public ActionResult ConsultarComentarios(int idPaciente)
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario != 3)
+            {
+                return View("Unauthorized");
+            }
             var respuesta = instanciaComentario.ConsultarComentariosUsuario(idPaciente);
 
             if (respuesta != null && respuesta.Codigo == 1)
@@ -22,6 +27,7 @@ namespace G7.Controllers
                 return View("Error");
         }
 
+        [Filtro]
         [HttpGet]
         public ActionResult AgregarComentario()
         {
@@ -29,9 +35,11 @@ namespace G7.Controllers
             return View();
         }
 
+        [Filtro]
         [HttpPost]
         public ActionResult AgregarComentario(ComentarioObj obj)
         {
+          
             var resultado = instanciaComentario.RegistrarComentario(obj);
 
             if (resultado != null && resultado.Codigo == 1)

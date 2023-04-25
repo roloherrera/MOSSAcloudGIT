@@ -18,15 +18,26 @@ namespace G7.Controllers
         DoctorModel instanciaDoctor = new DoctorModel();
 
         //Agregar Doctor
+        [Filtro]
         [HttpGet]
         public ActionResult RegistrarDoctor()
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario != 3)
+            {
+                return View("Unauthorized");
+            }
             return View();
         }
-
+        [Filtro]
         [HttpPost]
         public ActionResult RegistrarDoctor(DoctorObj obj)
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario != 3)
+            {
+                return View("Unauthorized");
+            }
             var resultado = instanciaDoctor.RegistrarDoctor(obj);
 
             if (resultado != null && resultado.Codigo == 1)
@@ -36,9 +47,16 @@ namespace G7.Controllers
         }
 
         //ver doctor
+        [Filtro]
         [HttpGet]
         public ActionResult MostrarDoctor(int id)
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario != 3)
+            {
+                return View("Unauthorized");
+            }
+        
             var respuesta = instanciaDoctor.MostrarDoctor(id);
 
             if (respuesta != null && respuesta.Codigo == 1)
@@ -47,9 +65,15 @@ namespace G7.Controllers
                 return View("Error");
         }
 
+        [Filtro]
         [HttpGet]
         public ActionResult MostrarDoctores()
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario != 3)
+            {
+                return View("Unauthorized");
+            }
             var respuesta = instanciaDoctor.MostrarDoctores();
 
             if (respuesta != null && respuesta.Codigo == 1)

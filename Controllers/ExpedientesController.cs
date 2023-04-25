@@ -16,10 +16,35 @@ namespace G7.Controllers
     {
         ExpedienteModel instanciaExpediente = new ExpedienteModel();
 
+        //ver expedientes
+        [Filtro]
+        [HttpGet]
+        public ActionResult ConsultarExpedientes()
+        {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario == 1)
+            {
+                return View("Unauthorized");
+            }
+
+            var respuesta = instanciaExpediente.ConsultarExpedientes();
+
+            if (respuesta != null && respuesta.Codigo == 1)
+                return View(respuesta.lista);
+            else
+                return View("Error");
+        }
+
         //ver expediente por paciente
+        [Filtro]
         [HttpGet]
         public ActionResult ConsultarExpedientePaciente(int idPaciente)
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario == 1)
+            {
+                return View("Unauthorized");
+            }
             var respuesta = instanciaExpediente.ConsultarExpedientePaciente(idPaciente);
 
             if (respuesta != null && respuesta.Codigo == 1)
@@ -29,16 +54,27 @@ namespace G7.Controllers
         }
 
         //añadir expediente
+        [Filtro]
         [HttpGet]
         public ActionResult RegistrarExpediente()
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario == 1)
+            {
+                return View("Unauthorized");
+            }
             return View();
         }
 
-
+        [Filtro]
         [HttpPost]
         public ActionResult RegistrarExpediente(ExpedientesObj obj)
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario == 1)
+            {
+                return View("Unauthorized");
+            }
             var resultado = instanciaExpediente.RegistrarExpediente(obj);
 
             if (resultado != null && resultado.Codigo == 1)
@@ -48,9 +84,15 @@ namespace G7.Controllers
         }
 
         //editar expediente
+        [Filtro]
         [HttpPost]
         public ActionResult EditarExpediente(ExpedientesObj expediente)
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario == 1)
+            {
+                return View("Unauthorized");
+            }
             var resultado = instanciaExpediente.EditarExpediente(expediente);
 
             if (resultado != null && resultado.Codigo == 1)

@@ -259,7 +259,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Home/Principal">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/app/Home/Principal">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-heart-pulse-fill" viewBox="0 0 16 16">
                         <path d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9H1.475Z" />
@@ -323,9 +323,8 @@
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Control de Doctores</h6>
-                        <a class="collapse-item" href="@Url.Action("BuscarDoctor", "Doctor")">Buscar Doctores</a>
                         <a class="collapse-item" href="@Url.Action("VerDoctor", "Doctor")">Ver Doctores</a>
-                        <a class="collapse-item" href="@Url.Action("CrearDoctor", "Doctor")">Agregar Doctor</a>
+                        <a class="collapse-item" href="@Url.Action("RegistrarDoctor", "Doctor")">Agregar Doctor</a>
                     </div>
                 </div>
             </li>
@@ -344,9 +343,9 @@
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Expediente médico</h6>
-                        <a class="collapse-item" href="@Url.Action("VerExpediente", "Expediente")">Buscar Expediente</a>
-                        <a class="collapse-item" href="@Url.Action("EditarExpediente", "Expediente")">Modificar Expedientes</a>
-                        <a class="collapse-item" href="@Url.Action("CrearExpediente", "Expediente")">Generar nuevo Expediente</a>
+                        <a class="collapse-item" href="@Url.Action("ConsultarExpedientes", "Expedientes")">Buscar Expediente</a>
+                        <a class="collapse-item" href="@Url.Action("EditarExpediente", "Expedientes")">Modificar Expedientes</a>
+                        <a class="collapse-item" href="@Url.Action("RegistrarExpediente", "Expedientes")">Generar nuevo Expediente</a>
                     </div>
                 </div>
             </li>
@@ -370,7 +369,7 @@
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Agendar citas:</h6>
                         <!--   <a class="collapse-item" href="@Url.Action("ForgotPassword", "Sesion")">ForgotPassword</a>
-                <a class="collapse-item" href="@Url.Action("Register", "Sesion")">Register</a> -->
+    <a class="collapse-item" href="@Url.Action("Register", "Sesion")">Register</a> -->
                         <a class="collapse-item" href="@Url.Action("CrearCita", "Citas")">Programar una nueva cita</a>
 
                     </div>

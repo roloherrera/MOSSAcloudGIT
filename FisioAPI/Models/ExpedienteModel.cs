@@ -88,7 +88,40 @@ namespace FisioAPI.Models
 
                 return respuesta;
             }
+
         }
+
+        public RespuestaExpedienteObj Consultar_Expedientes()
+        {
+            using (var con = new MOSSAEntities())
+            {
+                RespuestaExpedienteObj respuesta = new RespuestaExpedienteObj();
+
+                var expedientes = con.Expediente.Select(e => new ExpedienteObj()
+                {
+                    IdExpediente = e.IdExpediente,
+                    IdUsuario = e.IdUsuarioFk,
+                    IdDoctor = e.IdDoctorFK,
+                    Padecimiento = e.Padecimiento,
+                    Tratamiento = e.Tratamiento
+                }).ToList();
+
+                if (expedientes.Count > 0)
+                {
+                    respuesta.Codigo = 1;
+                    respuesta.Mensaje = "Expedientes encontrados";
+                    respuesta.lista = expedientes;
+                }
+                else
+                {
+                    respuesta.Codigo = 0;
+                    respuesta.Mensaje = "No se encontraron expedientes";
+                }
+
+                return respuesta;
+            }
+        }
+
     }
 
     

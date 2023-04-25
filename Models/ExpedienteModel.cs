@@ -65,6 +65,36 @@ namespace G7.Models
                 return respuestaError;
             }
         }
+
+        public RespuestaExpedienteObj ConsultarExpedientes()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string rutaApi = ConfigurationManager.AppSettings["rutaApi"] + "api/Expediente/ConsultarExpedientes";
+
+                HttpResponseMessage respuesta = client.GetAsync(rutaApi).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    var expedientes = respuesta.Content.ReadAsAsync<List<ExpedientesObj>>().Result;
+
+                    RespuestaExpedienteObj respuestaExpedientes = new RespuestaExpedienteObj();
+                    respuestaExpedientes.Codigo = 1;
+                    respuestaExpedientes.Mensaje = "Expedientes consultados exitosamente";
+                    respuestaExpedientes.lista = expedientes;
+
+                    return respuestaExpedientes;
+                }
+                else
+                {
+                    RespuestaExpedienteObj respuestaError = new RespuestaExpedienteObj();
+                    respuestaError.Codigo = -1;
+                    respuestaError.Mensaje = "No se pudo obtener los expedientes";
+                    respuestaError.lista = new List<ExpedientesObj>();
+                    return respuestaError;
+                }
+            }
+        }
     }
     public class ExpedientesObj
     {

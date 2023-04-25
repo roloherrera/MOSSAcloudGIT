@@ -17,9 +17,15 @@ namespace G7.Controllers
 
         UsuarioModel instanciaUsuario = new UsuarioModel();
 
+        [Filtro]
         [HttpGet]
         public ActionResult MostrarUsuarios()
         {
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+            if (tipoUsuario == 1)
+            {
+                return View("Unauthorized");
+            }
             var respuesta = instanciaUsuario.Consultar_Usuarios_Estado(1);
 
             if (respuesta != null && respuesta.Codigo == 1)
@@ -84,13 +90,20 @@ namespace G7.Controllers
         }
 
 
-
+        [Filtro]
         [HttpGet]
         public ActionResult EditarUsuarios(int id)
         {
+            int idusuario = Convert.ToInt32(Session["consecutivo"]);
+            int tipoUsuario = Convert.ToInt32(Session["tipoUsuario"]);
+           
+            if (tipoUsuario == 1 && idusuario != id)
+            {
+                return View("Unauthorized");
+            }
             return View();
         }
-
+        [Filtro]
         [HttpPost]
         public ActionResult EditarUsuarios(UsuarioObj obj)
         {

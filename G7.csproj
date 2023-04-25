@@ -154,7 +154,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\ComentarioController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
@@ -2102,6 +2101,8 @@
     <Content Include="Views\Expedientes\EditarExpediente.cshtml" />
     <Content Include="Views\Expedientes\ConsultarExpedientePaciente.cshtml" />
     <Content Include="Views\Comentario\AgregarComentario.cshtml" />
+    <Content Include="Views\Shared\Unauthorized.cshtml" />
+    <Content Include="Views\Expedientes\ConsultarExpedientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
