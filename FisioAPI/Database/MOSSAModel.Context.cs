@@ -42,24 +42,6 @@ namespace FisioAPI.Database
         public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     
-        public virtual ObjectResult<Consultar_Citas_Doctor_Result> Consultar_Citas_Doctor(Nullable<int> idDoctor)
-        {
-            var idDoctorParameter = idDoctor.HasValue ?
-                new ObjectParameter("IdDoctor", idDoctor) :
-                new ObjectParameter("IdDoctor", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Consultar_Citas_Doctor_Result>("Consultar_Citas_Doctor", idDoctorParameter);
-        }
-    
-        public virtual ObjectResult<Consultar_Citas_Paciente_Result> Consultar_Citas_Paciente(Nullable<int> idPaciente)
-        {
-            var idPacienteParameter = idPaciente.HasValue ?
-                new ObjectParameter("IdPaciente", idPaciente) :
-                new ObjectParameter("IdPaciente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Consultar_Citas_Paciente_Result>("Consultar_Citas_Paciente", idPacienteParameter);
-        }
-    
         public virtual ObjectResult<Consultar_Comentario_Usuario_Result> Consultar_Comentario_Usuario(Nullable<int> idPaciente)
         {
             var idPacienteParameter = idPaciente.HasValue ?
@@ -136,37 +118,29 @@ namespace FisioAPI.Database
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Consultar_Usuarios_Estado_Result>("Consultar_Usuarios_Estado", indicadorParameter);
         }
     
-        public virtual int Editar_Citas(Nullable<int> idCita, Nullable<int> idUsuario, Nullable<int> idDoctor, string condicion, Nullable<System.DateTime> hora, Nullable<System.DateTime> dia, Nullable<bool> status)
+        public virtual int Editar_Citas(Nullable<int> idCita, string descripcion, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin, string nombre)
         {
             var idCitaParameter = idCita.HasValue ?
                 new ObjectParameter("IdCita", idCita) :
                 new ObjectParameter("IdCita", typeof(int));
     
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
     
-            var idDoctorParameter = idDoctor.HasValue ?
-                new ObjectParameter("IdDoctor", idDoctor) :
-                new ObjectParameter("IdDoctor", typeof(int));
+            var inicioParameter = inicio.HasValue ?
+                new ObjectParameter("Inicio", inicio) :
+                new ObjectParameter("Inicio", typeof(System.DateTime));
     
-            var condicionParameter = condicion != null ?
-                new ObjectParameter("Condicion", condicion) :
-                new ObjectParameter("Condicion", typeof(string));
+            var finParameter = fin.HasValue ?
+                new ObjectParameter("Fin", fin) :
+                new ObjectParameter("Fin", typeof(System.DateTime));
     
-            var horaParameter = hora.HasValue ?
-                new ObjectParameter("Hora", hora) :
-                new ObjectParameter("Hora", typeof(System.DateTime));
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
     
-            var diaParameter = dia.HasValue ?
-                new ObjectParameter("Dia", dia) :
-                new ObjectParameter("Dia", typeof(System.DateTime));
-    
-            var statusParameter = status.HasValue ?
-                new ObjectParameter("Status", status) :
-                new ObjectParameter("Status", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Editar_Citas", idCitaParameter, idUsuarioParameter, idDoctorParameter, condicionParameter, horaParameter, diaParameter, statusParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Editar_Citas", idCitaParameter, descripcionParameter, inicioParameter, finParameter, nombreParameter);
         }
     
         public virtual int Editar_Datos_Planilla(Nullable<int> idPlanilla, Nullable<int> idDoctor, Nullable<System.DateTime> fecha, Nullable<int> horasT, Nullable<decimal> salBrut, Nullable<decimal> seguro, Nullable<decimal> deducc, Nullable<decimal> extra, Nullable<decimal> salNet)
@@ -351,29 +325,25 @@ namespace FisioAPI.Database
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar_BitacoraE", emailParameter, fechaHoraParameter, codigoErrorParameter, descripcionParameter, origenParameter);
         }
     
-        public virtual int Registrar_Cita(Nullable<int> idUsuario, Nullable<int> idDoctor, string condicion, Nullable<System.DateTime> hora, Nullable<System.DateTime> dia)
+        public virtual int Registrar_Cita(string descripcion, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin, string nombre)
         {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
     
-            var idDoctorParameter = idDoctor.HasValue ?
-                new ObjectParameter("IdDoctor", idDoctor) :
-                new ObjectParameter("IdDoctor", typeof(int));
+            var inicioParameter = inicio.HasValue ?
+                new ObjectParameter("Inicio", inicio) :
+                new ObjectParameter("Inicio", typeof(System.DateTime));
     
-            var condicionParameter = condicion != null ?
-                new ObjectParameter("Condicion", condicion) :
-                new ObjectParameter("Condicion", typeof(string));
+            var finParameter = fin.HasValue ?
+                new ObjectParameter("Fin", fin) :
+                new ObjectParameter("Fin", typeof(System.DateTime));
     
-            var horaParameter = hora.HasValue ?
-                new ObjectParameter("Hora", hora) :
-                new ObjectParameter("Hora", typeof(System.DateTime));
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
     
-            var diaParameter = dia.HasValue ?
-                new ObjectParameter("Dia", dia) :
-                new ObjectParameter("Dia", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar_Cita", idUsuarioParameter, idDoctorParameter, condicionParameter, horaParameter, diaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar_Cita", descripcionParameter, inicioParameter, finParameter, nombreParameter);
         }
     
         public virtual int Registrar_Comentario(Nullable<int> idUsuario, string comentario)

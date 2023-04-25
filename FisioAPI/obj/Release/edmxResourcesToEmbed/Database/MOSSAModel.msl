@@ -36,12 +36,10 @@
       <EntityTypeMapping TypeName="MOSSAModel.Citas">
         <MappingFragment StoreEntitySet="Citas">
           <ScalarProperty Name="IdCitas" ColumnName="IdCitas" />
-          <ScalarProperty Name="IdUsuarioFk" ColumnName="IdUsuarioFk" />
-          <ScalarProperty Name="IdDoctorFK" ColumnName="IdDoctorFK" />
-          <ScalarProperty Name="condicion" ColumnName="condicion" />
-          <ScalarProperty Name="Dia" ColumnName="Dia" />
-          <ScalarProperty Name="Hora" ColumnName="Hora" />
-          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaHoraInicio" ColumnName="FechaHoraInicio" />
+          <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -154,30 +152,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="Consultar_Citas_Doctor" FunctionName="MOSSAModel.Store.Consultar_Citas_Doctor">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MOSSAModel.Consultar_Citas_Doctor_Result">
-          <ScalarProperty Name="IdCitas" ColumnName="IdCitas" />
-          <ScalarProperty Name="IdUsuarioFK" ColumnName="IdUsuarioFK" />
-          <ScalarProperty Name="IdDoctorFK" ColumnName="IdDoctorFK" />
-          <ScalarProperty Name="Condicion" ColumnName="Condicion" />
-          <ScalarProperty Name="Hora" ColumnName="Hora" />
-          <ScalarProperty Name="status" ColumnName="status" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Consultar_Citas_Paciente" FunctionName="MOSSAModel.Store.Consultar_Citas_Paciente">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MOSSAModel.Consultar_Citas_Paciente_Result">
-          <ScalarProperty Name="IdCitas" ColumnName="IdCitas" />
-          <ScalarProperty Name="IdUsuarioFK" ColumnName="IdUsuarioFK" />
-          <ScalarProperty Name="IdDoctorFK" ColumnName="IdDoctorFK" />
-          <ScalarProperty Name="Condicion" ColumnName="Condicion" />
-          <ScalarProperty Name="Hora" ColumnName="Hora" />
-          <ScalarProperty Name="status" ColumnName="status" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Consultar_Comentario_Usuario" FunctionName="MOSSAModel.Store.Consultar_Comentario_Usuario">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MOSSAModel.Consultar_Comentario_Usuario_Result">

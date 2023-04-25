@@ -15,7 +15,7 @@ namespace FisioAPI.Models
             {
                 RespuestaCitasObj respuesta = new RespuestaCitasObj();
 
-                var resultado = con.Registrar_Cita(citas.IdUsuario, citas.IdDoctor, citas.Condicion, citas.Hora, citas.Hora);
+                var resultado = con.Registrar_Cita(citas.Descripcion, citas.FechaHoraInicio, citas.FechaHoraFin, citas.Nombre);
 
                 if (resultado > 0)
                 {
@@ -39,7 +39,7 @@ namespace FisioAPI.Models
             {
                 RespuestaCitasObj respuesta = new RespuestaCitasObj();
 
-                var resultado = con.Editar_Citas(citas.IdCita, citas.IdUsuario, citas.IdDoctor, citas.Condicion, citas.Hora, citas.Hora, citas.Status);
+                var resultado = con.Editar_Citas(citas.IdCita, citas.Descripcion, citas.FechaHoraInicio, citas.FechaHoraFin, citas.Nombre);
 
                 if (resultado > 0)
                 {
@@ -56,82 +56,17 @@ namespace FisioAPI.Models
             }
         }
 
-        //consultar cita por doctor
-        public RespuestaCitasObj Consultar_Citas_Doctor(int IdDoctor)
-        {
-            using (var con = new MOSSAEntities())
-            {
-                RespuestaCitasObj respuesta = new RespuestaCitasObj();
+        
 
-                var citas = con.Consultar_Citas_Doctor(IdDoctor);
-
-                if (citas != null)
-                {
-                    respuesta.Codigo = 1;
-                    respuesta.Mensaje = "Citas obtenidas correctamente";
-                    respuesta.lista = citas.Select(c => new CitasObj
-                    {
-                        IdCita = c.IdCitas,
-                        IdUsuario = c.IdUsuarioFK,
-                        IdDoctor = c.IdDoctorFK,
-                        Condicion = c.Condicion,
-                        Hora = c.Hora,
-                        Status = c.status
-                    }).ToList();
-                }
-                else
-                {
-                    respuesta.Codigo = 0;
-                    respuesta.Mensaje = "No se encontraron citas para el doctor especificado";
-                    respuesta.lista = new List<CitasObj>();
-                }
-
-                return respuesta;
-            }
-        }
-
-        //consultar cita por paciente
-        public RespuestaCitasObj Consultar_Citas_Paciente(int IdPaciente)
-        {
-            using (var con = new MOSSAEntities())
-            {
-                RespuestaCitasObj respuesta = new RespuestaCitasObj();
-
-                var citas = con.Consultar_Citas_Paciente(IdPaciente);
-
-                if (citas != null)
-                {
-                    respuesta.Codigo = 1;
-                    respuesta.Mensaje = "Citas obtenidas correctamente";
-                    respuesta.lista = citas.Select(c => new CitasObj
-                    {
-                        IdCita = c.IdCitas,
-                        IdUsuario = c.IdUsuarioFK,
-                        IdDoctor = c.IdDoctorFK,
-                        Condicion = c.Condicion,
-                        Hora = c.Hora,
-                        Status = c.status
-                    }).ToList();
-                }
-                else
-                {
-                    respuesta.Codigo = 0;
-                    respuesta.Mensaje = "No se encontraron citas para el paciente especificado";
-                    respuesta.lista = new List<CitasObj>();
-                }
-
-                return respuesta;
-            }
-        }
+        
     }
     public class CitasObj
     {
         public int IdCita { get; set; }
-        public int IdUsuario { get; set; }
-        public int IdDoctor { get; set; }
-        public string Condicion { get; set; }
-        public DateTime Hora { get; set; }
-        public bool Status { get; set; }
+        public string Descripcion { get; set; }
+        public string Nombre { get; set; }
+        public DateTime FechaHoraInicio { get; set; }
+        public DateTime FechaHoraFin { get; set; }
     }
 
     public class RespuestaCitasObj

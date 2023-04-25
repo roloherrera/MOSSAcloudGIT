@@ -4,23 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2ab649b3b8f149e992e872abaf456b09" Name="Diagram1">
+      <Diagram DiagramId="259a28076bff48e398e63e8322b6fdb2" Name="Diagram1">
         <EntityTypeShape EntityType="MOSSAModel.ABITACORA" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MOSSAModel.CasosAbiertos" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.CasosCerrados" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.Citas" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.Comentarios" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.Dias" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.Doctores" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.EBITACORA" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.Expediente" Width="1.5" PointX="10.5" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.Horario" Width="1.5" PointX="7.5" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.Planilla" Width="1.5" PointX="7.5" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.Servicios" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MOSSAModel.Usuario" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <AssociationConnector Association="MOSSAModel.FK__Citas__IdDoctorF__76969D2E" ManuallyRouted="false" />
-        <AssociationConnector Association="MOSSAModel.FK__Citas__IdUsuario__778AC167" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MOSSAModel.CasosCerrados" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.Citas" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.Comentarios" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.Dias" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.Doctores" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.EBITACORA" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.Expediente" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.Horario" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.Planilla" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.Servicios" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOSSAModel.Usuario" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="MOSSAModel.FK__Comentari__idUsu__72C60C4A" ManuallyRouted="false" />
         <AssociationConnector Association="MOSSAModel.FK__Horario__IdDiaFK__71D1E811" ManuallyRouted="false" />
         <AssociationConnector Association="MOSSAModel.FK__Doctores__IdUsua__73BA3083" ManuallyRouted="false" />

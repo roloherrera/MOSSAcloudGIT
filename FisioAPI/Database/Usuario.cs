@@ -17,7 +17,6 @@ namespace FisioAPI.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Citas = new HashSet<Citas>();
             this.Comentarios = new HashSet<Comentarios>();
             this.Doctores = new HashSet<Doctores>();
             this.Expediente = new HashSet<Expediente>();
@@ -36,8 +35,6 @@ namespace FisioAPI.Database
         public int idTipoUsuarioFk { get; set; }
         public bool state { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Citas> Citas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comentarios> Comentarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

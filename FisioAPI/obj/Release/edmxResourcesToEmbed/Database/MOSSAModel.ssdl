@@ -33,12 +33,10 @@
       <PropertyRef Name="IdCitas" />
     </Key>
     <Property Name="IdCitas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdUsuarioFk" Type="int" Nullable="false" />
-    <Property Name="IdDoctorFK" Type="int" Nullable="false" />
-    <Property Name="condicion" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Dia" Type="date" Nullable="false" />
-    <Property Name="Hora" Type="datetime" Nullable="false" />
-    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="FechaHoraInicio" Type="datetime" />
+    <Property Name="FechaHoraFin" Type="datetime" />
+    <Property Name="Nombre" Type="varchar" MaxLength="40" />
   </EntityType>
   <EntityType Name="Comentarios">
     <Key>
@@ -139,30 +137,6 @@
     <Property Name="idTipoUsuarioFk" Type="int" Nullable="false" />
     <Property Name="state" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Citas__IdDoctorF__76969D2E">
-    <End Role="Doctores" Type="Self.Doctores" Multiplicity="1" />
-    <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Doctores">
-        <PropertyRef Name="IdDoctor" />
-      </Principal>
-      <Dependent Role="Citas">
-        <PropertyRef Name="IdDoctorFK" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Citas__IdUsuario__778AC167">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-    <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="IdUsuario" />
-      </Principal>
-      <Dependent Role="Citas">
-        <PropertyRef Name="IdUsuarioFk" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Comentari__idUsu__72C60C4A">
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
     <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
@@ -259,12 +233,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="Consultar_Citas_Doctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="IdDoctor" Type="int" Mode="In" />
-  </Function>
-  <Function Name="Consultar_Citas_Paciente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="IdPaciente" Type="int" Mode="In" />
-  </Function>
   <Function Name="Consultar_Comentario_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdPaciente" Type="int" Mode="In" />
   </Function>
@@ -292,12 +260,10 @@
   </Function>
   <Function Name="Editar_Citas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdCita" Type="int" Mode="In" />
-    <Parameter Name="IdUsuario" Type="int" Mode="In" />
-    <Parameter Name="IdDoctor" Type="int" Mode="In" />
-    <Parameter Name="Condicion" Type="varchar" Mode="In" />
-    <Parameter Name="Hora" Type="datetime" Mode="In" />
-    <Parameter Name="Dia" Type="date" Mode="In" />
-    <Parameter Name="Status" Type="bit" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Inicio" Type="datetime" Mode="In" />
+    <Parameter Name="Fin" Type="datetime" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
   </Function>
   <Function Name="Editar_Datos_Planilla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdPlanilla" Type="int" Mode="In" />
@@ -350,11 +316,10 @@
     <Parameter Name="Origen" Type="varchar" Mode="In" />
   </Function>
   <Function Name="Registrar_Cita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="IdUsuario" Type="int" Mode="In" />
-    <Parameter Name="IdDoctor" Type="int" Mode="In" />
-    <Parameter Name="Condicion" Type="varchar" Mode="In" />
-    <Parameter Name="Hora" Type="datetime" Mode="In" />
-    <Parameter Name="Dia" Type="date" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Inicio" Type="datetime" Mode="In" />
+    <Parameter Name="Fin" Type="datetime" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
   </Function>
   <Function Name="Registrar_Comentario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdUsuario" Type="int" Mode="In" />
@@ -410,14 +375,6 @@
     <EntitySet Name="Servicios" EntityType="Self.Servicios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Citas__IdDoctorF__76969D2E" Association="Self.FK__Citas__IdDoctorF__76969D2E">
-      <End Role="Doctores" EntitySet="Doctores" />
-      <End Role="Citas" EntitySet="Citas" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Citas__IdUsuario__778AC167" Association="Self.FK__Citas__IdUsuario__778AC167">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="Citas" EntitySet="Citas" />
-    </AssociationSet>
     <AssociationSet Name="FK__Comentari__idUsu__72C60C4A" Association="Self.FK__Comentari__idUsu__72C60C4A">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Comentarios" EntitySet="Comentarios" />

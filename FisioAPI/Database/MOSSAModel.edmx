@@ -38,12 +38,10 @@
             <PropertyRef Name="IdCitas" />
           </Key>
           <Property Name="IdCitas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdUsuarioFk" Type="int" Nullable="false" />
-          <Property Name="IdDoctorFK" Type="int" Nullable="false" />
-          <Property Name="condicion" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Dia" Type="date" Nullable="false" />
-          <Property Name="Hora" Type="datetime" Nullable="false" />
-          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="FechaHoraInicio" Type="datetime" />
+          <Property Name="FechaHoraFin" Type="datetime" />
+          <Property Name="Nombre" Type="varchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="Comentarios">
           <Key>
@@ -144,30 +142,6 @@
           <Property Name="idTipoUsuarioFk" Type="int" Nullable="false" />
           <Property Name="state" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Citas__IdDoctorF__76969D2E">
-          <End Role="Doctores" Type="Self.Doctores" Multiplicity="1" />
-          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctores">
-              <PropertyRef Name="IdDoctor" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="IdDoctorFK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Citas__IdUsuario__778AC167">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="IdUsuarioFk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Comentari__idUsu__72C60C4A">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
@@ -264,12 +238,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="Consultar_Citas_Doctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdDoctor" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Consultar_Citas_Paciente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdPaciente" Type="int" Mode="In" />
-        </Function>
         <Function Name="Consultar_Comentario_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPaciente" Type="int" Mode="In" />
         </Function>
@@ -297,12 +265,10 @@
         </Function>
         <Function Name="Editar_Citas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdCita" Type="int" Mode="In" />
-          <Parameter Name="IdUsuario" Type="int" Mode="In" />
-          <Parameter Name="IdDoctor" Type="int" Mode="In" />
-          <Parameter Name="Condicion" Type="varchar" Mode="In" />
-          <Parameter Name="Hora" Type="datetime" Mode="In" />
-          <Parameter Name="Dia" Type="date" Mode="In" />
-          <Parameter Name="Status" Type="bit" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Inicio" Type="datetime" Mode="In" />
+          <Parameter Name="Fin" Type="datetime" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Editar_Datos_Planilla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPlanilla" Type="int" Mode="In" />
@@ -355,11 +321,10 @@
           <Parameter Name="Origen" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Registrar_Cita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdUsuario" Type="int" Mode="In" />
-          <Parameter Name="IdDoctor" Type="int" Mode="In" />
-          <Parameter Name="Condicion" Type="varchar" Mode="In" />
-          <Parameter Name="Hora" Type="datetime" Mode="In" />
-          <Parameter Name="Dia" Type="date" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Inicio" Type="datetime" Mode="In" />
+          <Parameter Name="Fin" Type="datetime" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Registrar_Comentario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
@@ -415,14 +380,6 @@
           <EntitySet Name="Servicios" EntityType="Self.Servicios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Citas__IdDoctorF__76969D2E" Association="Self.FK__Citas__IdDoctorF__76969D2E">
-            <End Role="Doctores" EntitySet="Doctores" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Citas__IdUsuario__778AC167" Association="Self.FK__Citas__IdUsuario__778AC167">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
           <AssociationSet Name="FK__Comentari__idUsu__72C60C4A" Association="Self.FK__Comentari__idUsu__72C60C4A">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Comentarios" EntitySet="Comentarios" />
@@ -494,14 +451,10 @@
             <PropertyRef Name="IdCitas" />
           </Key>
           <Property Name="IdCitas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUsuarioFk" Type="Int32" Nullable="false" />
-          <Property Name="IdDoctorFK" Type="Int32" Nullable="false" />
-          <Property Name="condicion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Dia" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Hora" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Doctores" Relationship="Self.FK__Citas__IdDoctorF__76969D2E" FromRole="Citas" ToRole="Doctores" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Citas__IdUsuario__778AC167" FromRole="Citas" ToRole="Usuario" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaHoraInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaHoraFin" Type="DateTime" Precision="3" />
+          <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Comentarios">
           <Key>
@@ -526,7 +479,6 @@
           </Key>
           <Property Name="IdDoctor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdUsuarioFK" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__IdDoctorF__76969D2E" FromRole="Doctores" ToRole="Citas" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK__Doctores__IdUsua__73BA3083" FromRole="Doctores" ToRole="Usuario" />
           <NavigationProperty Name="Expediente" Relationship="Self.FK__Expedient__IdDoc__787EE5A0" FromRole="Doctores" ToRole="Expediente" />
           <NavigationProperty Name="Horario" Relationship="Self.FK__Horario__IdDocto__7A672E12" FromRole="Doctores" ToRole="Horario" />
@@ -614,36 +566,11 @@
           <Property Name="Contrasenna" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idTipoUsuarioFk" Type="Int32" Nullable="false" />
           <Property Name="state" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__IdUsuario__778AC167" FromRole="Usuario" ToRole="Citas" />
           <NavigationProperty Name="Comentarios" Relationship="Self.FK__Comentari__idUsu__72C60C4A" FromRole="Usuario" ToRole="Comentarios" />
           <NavigationProperty Name="Doctores" Relationship="Self.FK__Doctores__IdUsua__73BA3083" FromRole="Usuario" ToRole="Doctores" />
           <NavigationProperty Name="Expediente" Relationship="Self.FK__Expedient__IdUsu__797309D9" FromRole="Usuario" ToRole="Expediente" />
           <NavigationProperty Name="TipoUsuario" Relationship="Self.FK__Usuario__idTipoU__75A278F5" FromRole="Usuario" ToRole="TipoUsuario" />
         </EntityType>
-        <Association Name="FK__Citas__IdDoctorF__76969D2E">
-          <End Role="Doctores" Type="Self.Doctores" Multiplicity="1" />
-          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctores">
-              <PropertyRef Name="IdDoctor" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="IdDoctorFK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Citas__IdUsuario__778AC167">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="IdUsuarioFk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Comentari__idUsu__72C60C4A">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
@@ -755,14 +682,6 @@
           <EntitySet Name="Servicios" EntityType="Self.Servicios" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
-          <AssociationSet Name="FK__Citas__IdDoctorF__76969D2E" Association="Self.FK__Citas__IdDoctorF__76969D2E">
-            <End Role="Doctores" EntitySet="Doctores" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Citas__IdUsuario__778AC167" Association="Self.FK__Citas__IdUsuario__778AC167">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
           <AssociationSet Name="FK__Comentari__idUsu__72C60C4A" Association="Self.FK__Comentari__idUsu__72C60C4A">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Comentarios" EntitySet="Comentarios" />
@@ -795,12 +714,6 @@
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <FunctionImport Name="Consultar_Citas_Doctor" ReturnType="Collection(MOSSAModel.Consultar_Citas_Doctor_Result)">
-            <Parameter Name="IdDoctor" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Consultar_Citas_Paciente" ReturnType="Collection(MOSSAModel.Consultar_Citas_Paciente_Result)">
-            <Parameter Name="IdPaciente" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="Consultar_Comentario_Usuario" ReturnType="Collection(MOSSAModel.Consultar_Comentario_Usuario_Result)">
             <Parameter Name="IdPaciente" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -828,12 +741,10 @@
           </FunctionImport>
           <FunctionImport Name="Editar_Citas">
             <Parameter Name="IdCita" Mode="In" Type="Int32" />
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-            <Parameter Name="IdDoctor" Mode="In" Type="Int32" />
-            <Parameter Name="Condicion" Mode="In" Type="String" />
-            <Parameter Name="Hora" Mode="In" Type="DateTime" />
-            <Parameter Name="Dia" Mode="In" Type="DateTime" />
-            <Parameter Name="Status" Mode="In" Type="Boolean" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="Fin" Mode="In" Type="DateTime" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Editar_Datos_Planilla">
             <Parameter Name="IdPlanilla" Mode="In" Type="Int32" />
@@ -886,11 +797,10 @@
             <Parameter Name="Origen" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Registrar_Cita">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-            <Parameter Name="IdDoctor" Mode="In" Type="Int32" />
-            <Parameter Name="Condicion" Mode="In" Type="String" />
-            <Parameter Name="Hora" Mode="In" Type="DateTime" />
-            <Parameter Name="Dia" Mode="In" Type="DateTime" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="Fin" Mode="In" Type="DateTime" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Registrar_Comentario">
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
@@ -932,22 +842,6 @@
             <Parameter Name="Imagen" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="Consultar_Citas_Doctor_Result">
-          <Property Type="Int32" Name="IdCitas" Nullable="false" />
-          <Property Type="Int32" Name="IdUsuarioFK" Nullable="false" />
-          <Property Type="Int32" Name="IdDoctorFK" Nullable="false" />
-          <Property Type="String" Name="Condicion" Nullable="false" />
-          <Property Type="DateTime" Name="Hora" Nullable="false" Precision="23" />
-          <Property Type="Boolean" Name="status" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Consultar_Citas_Paciente_Result">
-          <Property Type="Int32" Name="IdCitas" Nullable="false" />
-          <Property Type="Int32" Name="IdUsuarioFK" Nullable="false" />
-          <Property Type="Int32" Name="IdDoctorFK" Nullable="false" />
-          <Property Type="String" Name="Condicion" Nullable="false" />
-          <Property Type="DateTime" Name="Hora" Nullable="false" Precision="23" />
-          <Property Type="Boolean" Name="status" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="Consultar_Comentario_Usuario_Result">
           <Property Type="Int32" Name="idComentarios" Nullable="false" />
           <Property Type="Int32" Name="idUsuariosFk" Nullable="false" />
@@ -1076,12 +970,10 @@
             <EntityTypeMapping TypeName="MOSSAModel.Citas">
               <MappingFragment StoreEntitySet="Citas">
                 <ScalarProperty Name="IdCitas" ColumnName="IdCitas" />
-                <ScalarProperty Name="IdUsuarioFk" ColumnName="IdUsuarioFk" />
-                <ScalarProperty Name="IdDoctorFK" ColumnName="IdDoctorFK" />
-                <ScalarProperty Name="condicion" ColumnName="condicion" />
-                <ScalarProperty Name="Dia" ColumnName="Dia" />
-                <ScalarProperty Name="Hora" ColumnName="Hora" />
-                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaHoraInicio" ColumnName="FechaHoraInicio" />
+                <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1194,30 +1086,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Consultar_Citas_Doctor" FunctionName="MOSSAModel.Store.Consultar_Citas_Doctor">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MOSSAModel.Consultar_Citas_Doctor_Result">
-                <ScalarProperty Name="IdCitas" ColumnName="IdCitas" />
-                <ScalarProperty Name="IdUsuarioFK" ColumnName="IdUsuarioFK" />
-                <ScalarProperty Name="IdDoctorFK" ColumnName="IdDoctorFK" />
-                <ScalarProperty Name="Condicion" ColumnName="Condicion" />
-                <ScalarProperty Name="Hora" ColumnName="Hora" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Consultar_Citas_Paciente" FunctionName="MOSSAModel.Store.Consultar_Citas_Paciente">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MOSSAModel.Consultar_Citas_Paciente_Result">
-                <ScalarProperty Name="IdCitas" ColumnName="IdCitas" />
-                <ScalarProperty Name="IdUsuarioFK" ColumnName="IdUsuarioFK" />
-                <ScalarProperty Name="IdDoctorFK" ColumnName="IdDoctorFK" />
-                <ScalarProperty Name="Condicion" ColumnName="Condicion" />
-                <ScalarProperty Name="Hora" ColumnName="Hora" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Consultar_Comentario_Usuario" FunctionName="MOSSAModel.Store.Consultar_Comentario_Usuario">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MOSSAModel.Consultar_Comentario_Usuario_Result">

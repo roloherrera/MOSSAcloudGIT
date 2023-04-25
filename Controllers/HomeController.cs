@@ -32,7 +32,8 @@ namespace G7.Controllers
             {
                 Session["consecutivo"] = respuesta.objeto.IdUsuario;
                 Session["codigoToken"] = respuesta.objeto.Token;
-                Session["nombreUsuario"] = respuesta.objeto.Email;
+                Session["nombreUsuario"] = respuesta.objeto.Nombre;
+                Session["emailUsuario"] = respuesta.objeto.Email;
                 Session["tipoUsuario"] = respuesta.objeto.TipoUsuario;
 
                 return RedirectToAction("Principal", "Home");

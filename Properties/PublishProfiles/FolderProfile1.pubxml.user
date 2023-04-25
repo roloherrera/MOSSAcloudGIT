@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\Usuario\Documents\CloudTest\FrontEnd</_PublishTargetUrl>
-    <History>True|2023-04-25T00:21:33.7605580Z;True|2023-04-24T18:03:37.2463770-06:00;True|2023-04-24T17:51:37.0062337-06:00;True|2023-04-24T17:22:47.3221017-06:00;True|2023-04-24T11:32:56.4511704-06:00;True|2023-04-23T13:43:46.2494095-06:00;True|2023-04-19T18:01:27.5694994-06:00;True|2023-04-19T13:35:53.2356463-06:00;True|2023-04-19T13:08:05.0912577-06:00;True|2023-04-17T10:30:45.0120310-06:00;True|2023-04-16T15:07:02.6108642-06:00;</History>
+    <History>True|2023-04-25T05:20:04.9248054Z;True|2023-04-24T18:21:33.7605580-06:00;True|2023-04-24T18:03:37.2463770-06:00;True|2023-04-24T17:51:37.0062337-06:00;True|2023-04-24T17:22:47.3221017-06:00;True|2023-04-24T11:32:56.4511704-06:00;True|2023-04-23T13:43:46.2494095-06:00;True|2023-04-19T18:01:27.5694994-06:00;True|2023-04-19T13:35:53.2356463-06:00;True|2023-04-19T13:08:05.0912577-06:00;True|2023-04-17T10:30:45.0120310-06:00;True|2023-04-16T15:07:02.6108642-06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -37,10 +37,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/01/2023 18:13:42</publishTime>
     </File>
     <File Include="bin/G7.dll">
-      <publishTime>04/24/2023 18:21:24</publishTime>
+      <publishTime>04/24/2023 23:19:34</publishTime>
     </File>
     <File Include="bin/G7.pdb">
-      <publishTime>04/24/2023 18:21:24</publishTime>
+      <publishTime>04/24/2023 23:19:34</publishTime>
     </File>
     <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
       <publishTime>03/01/2023 18:13:42</publishTime>
@@ -6022,13 +6022,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/24/2023 17:49:13</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/24/2023 18:15:49</publishTime>
+      <publishTime>04/24/2023 22:07:25</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutLogin.cshtml">
       <publishTime>03/21/2023 22:31:54</publishTime>
     </File>
     <File Include="Views/Usuario/EditarUsuarios.cshtml">
-      <publishTime>04/24/2023 11:21:16</publishTime>
+      <publishTime>04/24/2023 22:07:24</publishTime>
     </File>
     <File Include="Views/Usuario/MostrarUsuarios.cshtml">
       <publishTime>04/19/2023 18:41:26</publishTime>

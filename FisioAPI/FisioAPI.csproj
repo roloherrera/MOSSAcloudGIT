@@ -216,91 +216,85 @@
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Database\ABITACORA.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\CasosAbiertos.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\CasosCerrados.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Citas.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Comentarios.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Consultar_Citas_Doctor_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Consultar_Citas_Paciente_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Consultar_Comentario_Usuario_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Consultar_Datos_Usuario_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Consultar_Doctor_Estado_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Consultar_Expediente_Paciente_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Consultar_IdDoctor_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Consultar_IdPlanilla_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Consultar_Planilla_Doctor_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Consultar_Usuarios_Estado_Result.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Dias.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Doctores.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\EBITACORA.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Expediente.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Horario.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\MOSSAModel.Context.cs">
+    <Compile Include="Database\MOSSAmodel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MOSSAModel.Context.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\MOSSAModel.cs">
+    <Compile Include="Database\MOSSAmodel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\MOSSAModel.Designer.cs">
+    <Compile Include="Database\MOSSAmodel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MOSSAModel.edmx</DependentUpon>
+      <DependentUpon>MOSSAmodel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Database\Planilla.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Servicios.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\TipoUsuario.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Usuario.cs">
-      <DependentUpon>MOSSAModel.tt</DependentUpon>
+      <DependentUpon>MOSSAmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -323,15 +317,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Database\MOSSAModel.Context.tt">
+    <Content Include="Database\MOSSAmodel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MOSSAModel.edmx</DependentUpon>
-      <LastGenOutput>MOSSAModel.Context.cs</LastGenOutput>
+      <DependentUpon>MOSSAmodel.edmx</DependentUpon>
+      <LastGenOutput>MOSSAmodel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Database\MOSSAModel.tt">
+    <Content Include="Database\MOSSAmodel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MOSSAModel.edmx</DependentUpon>
-      <LastGenOutput>MOSSAModel.cs</LastGenOutput>
+      <DependentUpon>MOSSAmodel.edmx</DependentUpon>
+      <LastGenOutput>MOSSAmodel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -359,12 +353,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Database\MOSSAModel.edmx">
+    <EntityDeploy Include="Database\MOSSAmodel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MOSSAModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>MOSSAmodel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Database\MOSSAModel.edmx.diagram">
-      <DependentUpon>MOSSAModel.edmx</DependentUpon>
+    <Content Include="Database\MOSSAmodel.edmx.diagram">
+      <DependentUpon>MOSSAmodel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FisioWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

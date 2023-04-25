@@ -15,14 +15,9 @@ namespace FisioAPI.Database
     public partial class Citas
     {
         public int IdCitas { get; set; }
-        public int IdUsuarioFk { get; set; }
-        public int IdDoctorFK { get; set; }
-        public string condicion { get; set; }
-        public System.DateTime Dia { get; set; }
-        public System.DateTime Hora { get; set; }
-        public bool status { get; set; }
-    
-        public virtual Doctores Doctores { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public string Descripcion { get; set; }
+        public Nullable<System.DateTime> FechaHoraInicio { get; set; }
+        public Nullable<System.DateTime> FechaHoraFin { get; set; }
+        public string Nombre { get; set; }
     }
 }

@@ -25,6 +25,12 @@
 </head>
 
 <body id="page-top">
+    @{
+        var userType = (int)Session["tipoUsuario"];
+        var userId = (int)Session["consecutivo"];
+        string userName = Session["nombreUsuario"]?.ToString();
+        string userMail = Session["emailUsuario"]?.ToString();
+    }
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -131,92 +137,13 @@
                 </li>
 
                          -->
-                <!-- Nav Item - Messages
-                <li class="nav-item dropdown no-arrow mx-1">
-                                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-envelope fa-fw"></i>
+               
 
-                                    -->
-                <!-- Counter - Messages
-                <span class="badge badge-danger badge-counter">7</span>
-                </a>
-
-                     -->
-                <!-- Dropdown - Messages
-                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                         aria-labelledby="messagesDropdown">
-                        <h6 class="dropdown-header">
-                            Message Center
-                        </h6>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="~/img/undraw_profile_1.svg"
-                                     alt="...">
-                                <div class="status-indicator bg-success"></div>
-                            </div>
-                            <div class="font-weight-bold">
-                                <div class="text-truncate">
-                                    Hi there! I am wondering if you can help me with a
-                                    problem I've been having.
-                                </div>
-                                <div class="small text-gray-500">Emily Fowler · 58m</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="~/img/undraw_profile_2.svg"
-                                     alt="...">
-                                <div class="status-indicator"></div>
-                            </div>
-                            <div>
-                                <div class="text-truncate">
-                                    I have the photos that you ordered last month, how
-                                    would you like them sent to you?
-                                </div>
-                                <div class="small text-gray-500">Jae Chun · 1d</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="~/img/undraw_profile_3.svg"
-                                     alt="...">
-                                <div class="status-indicator bg-warning"></div>
-                            </div>
-                            <div>
-                                <div class="text-truncate">
-                                    Last month's report looks great, I am very happy with
-                                    the progress so far, keep up the good work!
-                                </div>
-                                <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                     alt="...">
-                                <div class="status-indicator bg-success"></div>
-                            </div>
-                            <div>
-                                <div class="text-truncate">
-                                    Am I a good boy? The reason I ask is because someone
-                                    told me that people say this to all dogs, even if they aren't good...
-                                </div>
-                                <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                    </div>
-                </li>
-
-                <div class="topbar-divider d-none d-sm-block"></div>
-
-                         -->
                 <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Perfil</span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@userName</span>
                     <img class="img-profile rounded-circle"
                          src="~/img/undraw_profile.svg">
                 </a>
@@ -224,12 +151,16 @@
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                      aria-labelledby="userDropdown">
 
-                    <!--
+                    
                     <a class="dropdown-item" href="#">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
+                        @userMail
                     </a>
-                        -->
+
+                    <a class="dropdown-item" href="@Url.Action("EditarUsuarios", "Usuario", new { idUsuario = userId })">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Editar Perfil
+                    </a>
                     <!--
                     <a class="dropdown-item" href=#>
                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -287,108 +218,128 @@
             <div class="sidebar-heading">
                 Sistema
             </div>
-
-            <!-- Nav Item - Pacientes -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#PacienteMenu"
-                   aria-expanded="true" aria-controls="PacienteMenu">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                    </svg>
-                    <span>Pacientes</span>
-                </a>
-                <div id="PacienteMenu" class="collapse" aria-labelledby="headingPaciente"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Control de Pacientes</h6>
-                        <a class="collapse-item" href="@Url.Action("MostrarUsuarios","Usuario")">Administrar Pacientes</a>
-                        <!-- <a class="collapse-item" href="@Url.Action("MostrarUsuario", "Usuario")">Ver Usuarios</a> -->
-                        <a class="collapse-item" href="@Url.Action("RegistrarUsuarios", "Usuario")">Agregar Usuario</a>
+            @if (userType != 1)
+            {
+                <!-- Nav Item - Pacientes -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#PacienteMenu"
+                       aria-expanded="true" aria-controls="PacienteMenu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg>
+                        <span>Pacientes</span>
+                    </a>
+                    <div id="PacienteMenu" class="collapse" aria-labelledby="headingPaciente"
+                         data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Control de Pacientes</h6>
+                            <a class="collapse-item" href="@Url.Action("MostrarUsuarios","Usuario")">Administrar Pacientes</a>
+                            <!-- <a class="collapse-item" href="@Url.Action("MostrarUsuario", "Usuario")">Ver Usuarios</a> -->
+                            <a class="collapse-item" href="@Url.Action("RegistrarUsuarios", "Usuario")">Agregar Usuario</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <!-- Nav Item - Doctores -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#DoctorMenu"
-                   aria-expanded="true" aria-controls="DoctorMenu">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard" viewBox="0 0 16 16">
-                        <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5ZM9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8Zm1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Z" />
-                        <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2ZM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12V4Z" />
-                    </svg>
-                    <span>Doctores</span>
-                </a>
-                <div id="DoctorMenu" class="collapse" aria-labelledby="headingDoctor"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Control de Doctores</h6>
-                        <a class="collapse-item" href="@Url.Action("VerDoctor", "Doctor")">Ver Doctores</a>
-                        <a class="collapse-item" href="@Url.Action("RegistrarDoctor", "Doctor")">Agregar Doctor</a>
+                <!-- Nav Item - Doctores -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#DoctorMenu"
+                       aria-expanded="true" aria-controls="DoctorMenu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard" viewBox="0 0 16 16">
+                            <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5ZM9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8Zm1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Z" />
+                            <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2ZM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12V4Z" />
+                        </svg>
+                        <span>Doctores</span>
+                    </a>
+                    <div id="DoctorMenu" class="collapse" aria-labelledby="headingDoctor"
+                         data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Control de Doctores</h6>
+                            <a class="collapse-item" href="@Url.Action("VerDoctor", "Doctor")">Ver Doctores</a>
+                            <a class="collapse-item" href="@Url.Action("RegistrarDoctor", "Doctor")">Agregar Doctor</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <!-- Nav Item - Expedientes -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ExpedienteMenu"
-                   aria-expanded="true" aria-controls="ExpedienteMenu">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
-                        <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
-                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                    </svg>
-                    <span>Expedientes</span>
-                </a>
-                <div id="ExpedienteMenu" class="collapse" aria-labelledby="headingExpediente"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Expediente médico</h6>
-                        <a class="collapse-item" href="@Url.Action("ConsultarExpedientes", "Expedientes")">Buscar Expediente</a>
-                        <a class="collapse-item" href="@Url.Action("EditarExpediente", "Expedientes")">Modificar Expedientes</a>
-                        <a class="collapse-item" href="@Url.Action("RegistrarExpediente", "Expedientes")">Generar nuevo Expediente</a>
+                <!-- Nav Item - Expedientes -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ExpedienteMenu"
+                       aria-expanded="true" aria-controls="ExpedienteMenu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+                            <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                        </svg>
+                        <span>Expedientes</span>
+                    </a>
+                    <div id="ExpedienteMenu" class="collapse" aria-labelledby="headingExpediente"
+                         data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Expediente médico</h6>
+                            <a class="collapse-item" href="@Url.Action("ConsultarExpedientes", "Expedientes")">Buscar Expediente</a>
+                            <a class="collapse-item" href="@Url.Action("EditarExpediente", "Expedientes")">Modificar Expedientes</a>
+                            <a class="collapse-item" href="@Url.Action("RegistrarExpediente", "Expedientes")">Generar nuevo Expediente</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <!-- Nav Item - Citas -->
+                <!-- Nav Item - Citas -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#CitaMenu"
+                       aria-expanded="true" aria-controls="CitaMenu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8z" />
+                            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+                            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+                        </svg>
+                        <span>Citas</span>
+                    </a>
+                    <div id="CitaMenu" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Administrar Citas:</h6>
+                            <a class="collapse-item" href="@Url.Action("VerCita", "Citas")">Calendario de Citas</a>
+
+                            <div class="collapse-divider"></div>
+                            <h6 class="collapse-header">Agendar citas:</h6>
+                            <!--   <a class="collapse-item" href="@Url.Action("ForgotPassword", "Sesion")">ForgotPassword</a>
+                    <a class="collapse-item" href="@Url.Action("Register", "Sesion")">Register</a> -->
+                            <a class="collapse-item" href="@Url.Action("CrearCita", "Citas")">Programar una nueva cita</a>
+
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Reporte"
+                       aria-expanded="true" aria-controls="Reporte">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8z" />
+                            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+                            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+                        </svg>
+                        <span>Reporte</span>
+                    </a>
+                    <div id="Reporte" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Resumen Reportes:</h6>
+                            <a class="collapse-item" href="@Url.Action("VerReporte", "Reporte")">Resumen de Reporte</a>
+                        </div>
+                    </div>
+                </li>
+            }
+
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#CitaMenu"
-                   aria-expanded="true" aria-controls="CitaMenu">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Comentario"
+                   aria-expanded="true" aria-controls="Comentario">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8z" />
                         <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
                         <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
                     </svg>
-                    <span>Citas</span>
+                    <span>Comentario</span>
                 </a>
-                <div id="CitaMenu" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="Comentario" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Administrar Citas:</h6>
-                        <a class="collapse-item" href="@Url.Action("VerCita", "Citas")">Calendario de Citas</a>
-
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Agendar citas:</h6>
-                        <!--   <a class="collapse-item" href="@Url.Action("ForgotPassword", "Sesion")">ForgotPassword</a>
-    <a class="collapse-item" href="@Url.Action("Register", "Sesion")">Register</a> -->
-                        <a class="collapse-item" href="@Url.Action("CrearCita", "Citas")">Programar una nueva cita</a>
-
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Reporte"
-                   aria-expanded="true" aria-controls="Reporte">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8z" />
-                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                    </svg>
-                    <span>Reporte</span>
-                </a>
-                <div id="Reporte" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Resumen Reportes:</h6>
-                        <a class="collapse-item" href="@Url.Action("VerReporte", "Reporte")">Resumen de Reporte</a>
+                        <h6 class="collapse-header">Resumen Comentarios:</h6>
+                        <a class="collapse-item" href="@Url.Action("AgregarComentario", "Comentario")">Dejar un comentario</a>
                     </div>
                 </div>
             </li>
@@ -488,7 +439,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  
+
 
 </body>
 

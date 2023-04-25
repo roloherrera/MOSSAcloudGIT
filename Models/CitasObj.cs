@@ -7,12 +7,15 @@ namespace G7.Models
 {
     public class CitasObj
     {
-        public int IdCita { get; set; }
-        public int IdUsuario { get; set; }
-        public int IdEmpleado { get; set; }
-        public string Condicion { get; set; }
-        public DateTime Hora { get; set; }
-        public bool Status { get; set; }
+        public class Cita
+        {
+            public int Id { get; set; }
+            public string Descripcion { get; set; }
+            public DateTime FechaHoraInicio { get; set; }
+            public DateTime FechaHoraFin { get; set; }
+            public string Nombre { get; set; }
+        }
+
     }
 
     public class RespuestaCitasObj
